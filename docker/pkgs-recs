@@ -1,0 +1,18 @@
+# Packages here will be installed with recommends.
+# comments are allowed
+
+## bunsenlabs
+bunsen-common
+bunsen-configs
+bunsen-conky
+bunsen-docs
+#bunsen-faenza-icon-theme
+#bunsen-paper-icon-theme
+#bunsen-images
+bunsen-keyring
+bunsen-os-release
+bunsen-pipemenus
+bunsen-themes
+bunsen-thunar
+bunsen-utilities
+bunsen-welcome
