@@ -1,0 +1,163 @@
+##################################
+##clean from: pkgs-norecs
+##################################
+
+# 16.1 MB apt install --no-install-recommends anacron apt-transport-https apt-xapian-index aptitude  arj at
+anacron
+apt-transport-https
+apt-xapian-index
+aptitude
+#arandr 56.6 MB
+arj
+at
+# 2566 kB apt install --no-install-recommends at-spi2-core bash-completion btrfs-progs  chntpw
+at-spi2-core
+bash-completion
+btrfs-progs
+#catfish #47.5 MB
+chntpw
+#compton 21.5 MB
+#conky-all 22.5 MB
+#11.3M apt install --no-install-recommends  cpufrequtils cryptsetup curl crda dbus-x11 dmz-cursor-theme dosfstools eject enchant  f2fs-tools feh
+cpufrequtils
+cryptsetup
+curl
+crda
+dbus-x11
+dmz-cursor-theme
+dosfstools
+eject
+enchant
+#evince 68.4 MB
+f2fs-tools
+#fbxkb 37.1 MB
+feh
+#ALLleft: 28.6 MB  ss=$(cat t1.txt |grep -v "^#\|^$") && apt install --no-install-recommends $ss
+
+
+# 2819 kB apt install --no-install-recommends fonts-cantarell fonts-noto-mono fonts-inconsolata fonts-liberation
+fonts-cantarell
+#fonts-noto #9192 kB
+#fonts-noto-cjk #54.3 MB
+fonts-noto-mono
+fonts-inconsolata
+fonts-liberation
+# 200Kb; apt install --no-install-recommends fuse   gddrescue
+fuse
+#galculator 42.0 MB
+#galternatives 47.2 MB
+gddrescue
+#gdebi  #60M
+#geany  44.8 MB
+#ghostscript 12.1 MB
+#gigolo 37.2 MB #remote filesys mount
+#gmrun 37.1 MB
+# ---
+#gnome-keyring  41.9 MB
+#gnome-themes-standard 40.8 MB
+#gparted 39.1 MB
+#gsimplecal 39.5 MB
+#gtk2-engines-pixbuf 16.3 MB
+#gvfs  38.5 MB
+#gvfs-backends 53.6 MB
+#gvfs-fuse 38.5 MB
+# 1123Kb;  apt install --no-install-recommends haveged hdparm hddtemp hfsprogs htop hwdata
+#hardinfo 40.0 MB
+haveged
+hdparm
+hddtemp
+#hexchat 37.1 MB
+hfsprogs
+htop
+hwdata
+#ALLleft: 3650 kB  ss=$(cat t1.txt |grep -v "^#\|^$") && apt install --no-install-recommends $ss
+
+
+#1959Kb; apt install --no-install-recommends inotify-tools inxi lame less  libpam-gnome-keyring
+inotify-tools
+inxi
+#jgmenu 22.2 MB
+lame
+less
+#libblockdev-crypto2 10.0 MB
+#libexo-1-0 46.5 MB
+#libinput-tools 5014 kB
+libpam-gnome-keyring
+#libqt5svg5 45.9 MB
+# 12.7M; apt install --no-install-recommends lm-sensors locales lshw lvm2  lzop mlocate modemmanager  ntp
+lm-sensors
+locales
+lshw
+lvm2 
+#lxappearance 37.2 MB
+#lxterminal 43.1 MB
+lzop
+mlocate
+modemmanager
+#nitrogen 39.1 MB
+ntp
+#obconf 43M
+#openbox 21.3 MB
+# 5226Kb; apt install --no-install-recommends openssh-client p7zip-full pciutils pcmciautils policykit-1  python   python-xdg
+openssh-client
+p7zip-full
+#papirus-icon-theme 10.5 MB 
+#pavucontrol 46.5 MB
+pciutils
+pcmciautils
+#pnmixer 42.3 MB
+policykit-1
+#policykit-1-gnome  42.0 MB
+python
+#python-keybinder 45.1 MB
+#python-notify 45.2M
+python-xdg
+#ALLleft: 17.3 MB  ss=$(cat t1.txt |grep -v "^#\|^$") && apt install --no-install-recommends $ss
+
+
+# 9370 kB  apt install --no-install-recommends rfkill rpl rsync rzip scrot smartmontools suckless-tools sudo
+#qt5-style-plugins 69.2 MB
+rfkill
+#ristretto 39.2 MB
+rpl
+rsync
+rzip
+scrot
+smartmontools
+suckless-tools
+sudo
+#thunar 46.6 MB
+#thunar-gtkhash 45.8 MB
+#thunar-media-tags-plugin 47.1 MB
+#thunar-volman 46.8 MB
+#tint2 38.0 MB
+# 3130Kb; apt install --no-install-recommends unace unalz  unrar unzip update-inetd user-setup uuid-runtime xbindkeys xcape xdg-user-dirs xdg-utils 
+#tumbler 26.5 MB
+unace
+unalz
+#unar 13.3 MB
+unrar
+unzip
+update-inetd
+user-setup
+uuid-runtime
+xbindkeys
+xcape
+xdg-user-dirs
+xdg-utils
+#xfce4-notifyd 43.5 MB
+#xfce4-screenshooter 43.9 MB
+# 223Kb; apt install --no-install-recommends  xinput xsel xz-utils zip net-tools tree tmux lrzsz
+#xfsprogs 13.9 MB
+xinput
+xsel
+xz-utils
+#yad 41.9 MB
+zip
+net-tools
+tree
+tmux
+lrzsz
+#gnome-system-monitor 44.7M
+#plank 43.6 MB
+#ALLleft: 12.3 MB  ss=$(cat t1.txt |grep -v "^#\|^$") && apt install --no-install-recommends $ss

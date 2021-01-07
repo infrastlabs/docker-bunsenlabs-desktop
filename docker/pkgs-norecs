@@ -9,6 +9,7 @@ apt-xapian-index
 aptitude
 arandr
 arj
+at
 at-spi2-core
 #avahi-daemon
 #avahi-utils
@@ -17,7 +18,7 @@ btrfs-progs
 #bzip2 #dep
 catfish
 chntpw
-clipit
+#clipit
 compton
 conky-all
 cpufrequtils
@@ -27,8 +28,7 @@ crda
 dbus-x11
 dmz-cursor-theme
 dosfstools
-e2fsprogs
-efibootmgr
+#efibootmgr
 eject
 enchant
 evince
@@ -36,7 +36,7 @@ f2fs-tools
 fbxkb
 #fdpowermon
 feh
-file-roller
+#file-roller
 #filezilla
 #firefox-esr
 #firmware-b43-installer
@@ -45,13 +45,10 @@ file-roller
 #firmware-ralink
 #firmware-realtek
 #firmware-iwlwifi
-#flashplugin-nonfree
 fonts-cantarell
-#fonts-dejavu
-#fonts-droid
 fonts-noto
-fonts-noto-mono
 fonts-noto-cjk
+fonts-noto-mono
 fonts-inconsolata
 fonts-liberation
 #ftp
@@ -59,6 +56,7 @@ fuse
 #fusesmb
 galculator
 galternatives
+gddrescue
 gdebi
 geany
 #geany-plugins
@@ -66,13 +64,9 @@ ghostscript
 gigolo
 gmrun
 gnome-keyring
-#gnome-themes-standard
-#gnumeric
-#gparted
+gnome-themes-standard
+gparted
 gsimplecal
-#gstreamer0.10-plugins-good
-#gstreamer0.10-plugins-bad
-#gstreamer0.10-plugins-ugly
 #gstreamer1.0-libav
 #gstreamer1.0-plugins-bad
 #gstreamer1.0-plugins-base
@@ -87,6 +81,7 @@ gvfs-backends
 #gvfs-bin
 gvfs-fuse
 hardinfo
+haveged
 hdparm
 hddtemp
 hexchat
@@ -94,27 +89,37 @@ hfsprogs
 htop
 hwdata
 #i965-va-driver
-#iceweasel
+inotify-tools
 #intel-microcode
+inxi
 #jfsutils
+jgmenu
 lame
 less
+libblockdev-crypto2
+libexo-1-0
 libinput-tools
 libpam-gnome-keyring
 #libreoffice-writer
 #libreoffice-gtk
-libnotify-bin
+#libreoffice-calc
+#libreoffice-gtk2
+#libreoffice-writerlibnotify-bin
 #libnss-mdns
 libqt5svg5
 #lightdm
-#light-locker
+#lightdm-gtk-greeter
+#lightdm-gtk-greeter-settings
+#light-lockerlm-sensors
 lm-sensors
 locales
-lsb-release
+#lsb-release
+lshw
 lvm2
 lxappearance
+lxterminal
 lzop
-mirage
+#mirage
 mlocate
 modemmanager
 #network-manager
@@ -126,19 +131,18 @@ nitrogen
 #ntfs-3g
 ntp
 obconf
-obmenu
 openbox
 openssh-client
 p7zip-full
-paper-icon-theme
+papirus-icon-theme
 pavucontrol
 pciutils
 pcmciautils
 pnmixer
-policykit-1-gnome
 policykit-1
+policykit-1-gnome
 #pulseaudio
-#pulseaudio-module-x11
+python
 python-keybinder
 python-notify
 python-xdg
@@ -146,6 +150,7 @@ qt5-style-plugins
 #reiser4progs
 #reiserfsprogs
 rfkill
+ristretto
 rpl
 rsync
 rzip
@@ -153,10 +158,11 @@ scrot
 smartmontools
 suckless-tools
 sudo
-synaptic
-terminator
+#synaptic
+#terminator
 thunar
-thunar-archive-plugin
+#thunar-archive-plugin
+thunar-gtkhash
 thunar-media-tags-plugin
 thunar-volman
 tint2
@@ -181,6 +187,8 @@ uuid-runtime
 #volumeicon-alsa
 #wireless-tools
 #wmctrl
+xbindkeys
+#xbindkeys-config
 xcape
 xdg-user-dirs
 xdg-utils
@@ -194,7 +202,6 @@ xfce4-screenshooter
 xfsprogs
 xinput
 #xorg
-#xscreensaver
 #xserver-xorg-input-all
 #xserver-xorg-input-synaptics
 #xserver-xorg-input-evdev
@@ -206,8 +213,6 @@ xinput
 xsel
 xz-utils
 yad
-#yelp
-#zenity
 zip
 
 ##samAdd
@@ -217,12 +222,12 @@ tree
 tmux
 lrzsz
 
-ristretto
-plank
-#docky
-#ibus-rime
 gnome-system-monitor
+ristretto
+#ibus-rime
+#docky
+plank
 
-
+#$ cat pkgs-norecs |grep -v "^#" |grep -v "^$" |wc
 
 

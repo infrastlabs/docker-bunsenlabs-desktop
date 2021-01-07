@@ -1,0 +1,40 @@
+# ref: https://github.com/huapox/kuberimages//bs-nux/Dockerfile
+FROM registry.cn-shenzhen.aliyuncs.com/sam-ns1/sync-kube2:sys-bsnux as archives
+
+FROM registry.cn-shenzhen.aliyuncs.com/infrastlabs/fat-debian as repository
+ARG REPO=/apt-repository
+
+RUN domain="mirrors.163.com" \
+ && echo "deb http://$domain/debian/ buster main contrib non-free" > /etc/apt/sources.list \
+ && echo "deb http://$domain/debian/ buster-updates main contrib non-free">> /etc/apt/sources.list
+
+RUN apt update && apt -y install dpkg-dev vim.tiny
+
+RUN mkdir -p $REPO/dists/sid/main/binary-amd64 && mkdir -p $REPO/pools \
+  && echo -e """\
+Archive: sid\n\
+Version: bunsen\n\
+Component: main\n\
+Origin: Local\n\
+Label: Local\n\
+Architecture: amd64\n\
+""" > $REPO/dists/sid/Release 
+   
+# 43  mv *.deb pools/
+# 5  chmod 777 *.deb
+COPY --from=archives /var/cache/apt/archives/*.deb $REPO/pools/
+
+RUN ls -1 $REPO/pools | sed 's/_.*$/ extra BOGUS/' | uniq > $REPO/override \
+  && cd $REPO && dpkg-scanpackages pools $REPO/override > $REPO/dists/sid/main/binary-amd64/Packages.gz
+
+
+FROM registry.cn-shenzhen.aliyuncs.com/infrastlabs/fat-debian
+ARG REPO=/apt-repository
+
+
+RUN mkdir -p $REPO/
+COPY --from=repository $REPO/ $REPO/
+
+# use:
+# echo "deb [trusted=yes] file:///apt-repository/ sid main" >> /etc/apt/sources.list
+# apt update
