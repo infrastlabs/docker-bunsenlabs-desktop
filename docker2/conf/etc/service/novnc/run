@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec 2>&1
+# exec /usr/bin/chpst -u headless /dockerstartup/vnc_startup.sh
+exec /entry0.sh
