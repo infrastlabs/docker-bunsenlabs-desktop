@@ -9,7 +9,7 @@ repo=registry.cn-shenzhen.aliyuncs.com
 echo "${DOCKER_REGISTRY_PW_sdsir}" |docker login --username=${DOCKER_REGISTRY_USER_sdsir} --password-stdin $repo
 
 ns=infrastlabs
-img="docker-bunsen:latest"
+img="docker-bunsenlabs-desktop:localbuild"
 docker build --pull -t $repo/$ns/$img -f Dockerfile . 
 docker push $repo/$ns/$img
 
