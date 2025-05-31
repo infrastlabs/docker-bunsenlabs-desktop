@@ -1,9 +1,28 @@
 # ref https://github.com/huapox/kuberimages/blob/master/sys-bsnux/Dockerfile
-FROM registry.cn-shenzhen.aliyuncs.com/infrastlabs/fat-debian
-
-RUN domain="mirrors.163.com" \
- && echo "deb http://$domain/debian/ buster main contrib non-free" > /etc/apt/sources.list \
- && echo "deb http://$domain/debian/ buster-updates main contrib non-free">> /etc/apt/sources.list
+# FROM registry.cn-shenzhen.aliyuncs.com/infrastlabs/fat-debian
+FROM registry.cn-shenzhen.aliyuncs.com/infrasync/v2025:library--debian---10-slim
+ENV \
+  DEBIAN_FRONTEND=noninteractive
+# mirrors.tuna.tsinghua.edu.cn  mirrors.ustc.edu.cn
+# mirrors.163.com  mirrors.aliyun.com  mirrors.tencentyun.com
+ARG TARGETPLATFORM
+# https://mirrors.ustc.edu.cn/help/debian.html #deb12: invalid signature
+#  Acquire::http::Pipeline-Depth \"0\";
+#  apt 2.1.9 及以后的版本中，apt 的 HTTP Pipelining 特性与 Nginx 服务器疑似存在一定的不兼容问题
+#  使用 HTTPS 可以有效避免国内运营商的缓存劫持，但需要事先安装 apt-transport-https (Debian Buster 及以上版本不需要)
+RUN echo "Acquire {\n\
+  APT::Get::Allow-Unauthenticated \"true\";\n\
+  GPG::Ignore \"true\";\n\
+  AllowInsecureRepositories \"true\";\n\
+  AllowDowngradeToInsecureRepositories \"true\";\n\
+  Acquire::http::Pipeline-Depth \"0\";\n\
+}" > /etc/apt/apt.conf.d/skip-gpg-check-ig; \
+  \
+  sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list; \
+  sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources; \
+  \
+  echo 'apt update -qq && apt install -yq --no-install-recommends $@ && apt clean && rm -rf /var/lib/apt/lists/*; ' > /usr/local/bin/apt.sh \
+    && chmod +x /usr/local/bin/apt.sh; 
 
 # rsync 
 RUN apt update \
@@ -11,10 +30,11 @@ RUN apt update \
   && apt clean
 RUN cd /bin && mv sh sh00 && ln -s /bin/bash sh
 
-# COPY ./etc/apt/sources.list.d /etc/apt/sources.list.d
-# COPY ./etc/apt/trusted.gpg.d /etc/apt/trusted.gpg.d
-RUN wget https://ddl.bunsenlabs.org/ddl/BunsenLabs-RELEASE.asc \
-  && sudo apt-key add BunsenLabs-RELEASE.asc
+# ERROR 404: Not Found.
+# RUN wget https://ddl.bunsenlabs.org/ddl/BunsenLabs-RELEASE.asc \
+#   && sudo apt-key add BunsenLabs-RELEASE.asc
+COPY ./src/bunsenlabs-desktop/etc/apt/trusted.gpg.d /etc/apt/trusted.gpg.d
+# COPY ./src/bunsenlabs-desktop/etc/apt/sources.list.d /etc/apt/sources.list.d
 RUN echo "deb https://pkg.bunsenlabs.org/debian lithium main">> /etc/apt/sources.list
 
 RUN apt update \
@@ -38,7 +58,9 @@ bunsen-utilities\n\
 bunsen-welcome\n\
 """) \
 && items=($val) \
-&& apt -yd install --no-install-recommends "${items[@]}" \
+#14 23.34 Need to get 127 MB of archives.
+#14 23.34 E: There were unauthenticated packages and -y was used without --allow-unauthenticated
+&& apt -yd install --no-install-recommends --allow-unauthenticated "${items[@]}" \
 && find /var/cache/apt/archives/ -type f |grep -v "bunsen\|jgmenu" |xargs rm -f
 # items=$(sed 's/\#.*$//' pkgs-recs) \
 
