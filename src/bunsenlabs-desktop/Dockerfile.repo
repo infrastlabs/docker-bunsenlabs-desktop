@@ -1,16 +1,15 @@
 # ref: https://github.com/huapox/kuberimages//bs-nux/Dockerfile
-FROM registry.cn-shenzhen.aliyuncs.com/sam-ns1/sync-kube2:sys-bsnux as archives
+# FROM registry.cn-shenzhen.aliyuncs.com/sam-ns1/sync-kube2:sys-bsnux as archives
+FROM registry.cn-shenzhen.aliyuncs.com/infrastlabs/docker-bunsenlabs-desktop:deian10-lithium-archives as archives
 
-FROM registry.cn-shenzhen.aliyuncs.com/infrastlabs/fat-debian as repository
-ARG REPO=/apt-repository
+# FROM registry.cn-shenzhen.aliyuncs.com/infrastlabs/fat-debian as repository
+FROM registry.cn-shenzhen.aliyuncs.com/infrasync/v2025:library--debian---10-slim as repository
+ARG APT_REPO=/apt-repository
 
-RUN domain="mirrors.163.com" \
- && echo "deb http://$domain/debian/ buster main contrib non-free" > /etc/apt/sources.list \
- && echo "deb http://$domain/debian/ buster-updates main contrib non-free">> /etc/apt/sources.list
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list;
 
 RUN apt update && apt -y install dpkg-dev vim.tiny
-
-RUN mkdir -p $REPO/dists/sid/main/binary-amd64 && mkdir -p $REPO/pools \
+RUN mkdir -p $APT_REPO/dists/sid/main/binary-amd64 && mkdir -p $APT_REPO/pools \
   && echo -e """\
 Archive: sid\n\
 Version: bunsen\n\
@@ -18,22 +17,20 @@ Component: main\n\
 Origin: Local\n\
 Label: Local\n\
 Architecture: amd64\n\
-""" > $REPO/dists/sid/Release 
+""" > $APT_REPO/dists/sid/Release 
    
 # 43  mv *.deb pools/
 # 5  chmod 777 *.deb
-COPY --from=archives /var/cache/apt/archives/*.deb $REPO/pools/
+COPY --from=archives /var/cache/apt/archives/*.deb $APT_REPO/pools/
 
-RUN ls -1 $REPO/pools | sed 's/_.*$/ extra BOGUS/' | uniq > $REPO/override \
-  && cd $REPO && dpkg-scanpackages pools $REPO/override > $REPO/dists/sid/main/binary-amd64/Packages.gz
-
-
-FROM registry.cn-shenzhen.aliyuncs.com/infrastlabs/fat-debian
-ARG REPO=/apt-repository
+RUN ls -1 $APT_REPO/pools | sed 's/_.*$/ extra BOGUS/' | uniq > $APT_REPO/override \
+  && cd $APT_REPO && dpkg-scanpackages pools $APT_REPO/override > $APT_REPO/dists/sid/main/binary-amd64/Packages.gz
 
 
-RUN mkdir -p $REPO/
-COPY --from=repository $REPO/ $REPO/
+FROM registry.cn-shenzhen.aliyuncs.com/infrasync/v2025:library--debian---10-slim
+ARG APT_REPO=/apt-repository
+RUN mkdir -p $APT_REPO/
+COPY --from=repository $APT_REPO/ $APT_REPO/
 
 # use:
 # echo "deb [trusted=yes] file:///apt-repository/ sid main" >> /etc/apt/sources.list
