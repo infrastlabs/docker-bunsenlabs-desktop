@@ -5,9 +5,9 @@
 bunsen-common
 bunsen-configs
 #bunsen-configs-pulse
-bunsen-conky
+# bunsen-conky
 bunsen-docs
-bunsen-exit
+# bunsen-exit
 bunsen-fortune
 bunsen-images
 bunsen-keyring
