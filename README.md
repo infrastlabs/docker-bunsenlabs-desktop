@@ -6,6 +6,10 @@
   - [openbox-desktop/README.md](./src/openbox-desktop/README.md)
   - https://distrowatch.com/table.php?distribution=bunsenlabs
   - https://distrowatch.com/table.php?distribution=CrunchBang
+  - **slax,slitaz**
+  - https://distrowatch.com/table.php?distribution=slax
+  - https://github.com/Tomas-M/linux-live  https://www.linux-live.org/
+  - https://github.com/teasiu/slitaz5cn
 - vers
   - 20240124:deb12-boron-1 `2023-06-10`
   - 20221219:deb11-beryllium-1 `2021-08-14`
