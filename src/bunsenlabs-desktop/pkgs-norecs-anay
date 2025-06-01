@@ -75,7 +75,7 @@ hwdata
 
 #1959Kb; apt install --no-install-recommends inotify-tools inxi lame less  libpam-gnome-keyring
 inotify-tools
-inxi
+# inxi
 #jgmenu 22.2 MB
 lame
 less
@@ -106,7 +106,7 @@ p7zip-full
 pciutils
 pcmciautils
 #pnmixer 42.3 MB
-policykit-1
+# policykit-1
 #policykit-1-gnome  42.0 MB
 python
 #python-keybinder 45.1 MB
@@ -141,7 +141,7 @@ unzip
 update-inetd
 user-setup
 uuid-runtime
-xbindkeys
+# xbindkeys
 xcape
 xdg-user-dirs
 xdg-utils
